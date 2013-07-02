@@ -114,7 +114,6 @@ func buildTrace(line string) (trace blkTrace, err error) {
 
 	trace.Action = fields[1]
 
-	// Only send the 'R' or 'W' to the client
 	trace.IoType = fields[2]
 
 	trace.Sector, err = strconv.ParseUint(fields[3], 10, 64)
