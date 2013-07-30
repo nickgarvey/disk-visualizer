@@ -45,11 +45,10 @@ func wsHandler(ws *websocket.Conn) {
 	defer func() { cls.remove <- ws }()
 	for {
 		var message [20]byte
-		n, err := ws.Read(message[:])
+		_, err := ws.Read(message[:])
 		if err != nil {
 			break
 		}
-		fmt.Printf("%s", message[:n])
 	}
 }
 
@@ -68,13 +67,14 @@ func (cls *clientListeners) run() {
 func sendToClients(traceCh chan blkTrace, errCh chan error) {
 	for trace := range traceCh {
 		go func(t blkTrace) {
-			json, err := json.Marshal(t)
-			if err != nil {
-				errCh <- err
-			} else {
-				// TODO: Start working here
-				for conn, _ := range cls.clients {
-					conn.Write(json)
+			if t.Action == "C" && t.Blocks > 0 {
+				json, err := json.Marshal(t)
+				if err != nil {
+					errCh <- err
+				} else {
+					for conn, _ := range cls.clients {
+						conn.Write(json)
+					}
 				}
 			}
 		}(trace)
