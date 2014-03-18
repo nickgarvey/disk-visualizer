@@ -36,19 +36,14 @@ var clearRect = function(ctx, x, y, width, height, color) {
 
     window.setTimeout(function() {
         fadeTo(.25);
-
         window.setTimeout(function() {
             fadeTo(.1);
-
             window.setTimeout(function() {
                 fadeTo(.05);
-
                 window.setTimeout(function() {
                     fadeTo(.01);
-
                     window.setTimeout(function() {
                         fadeTo(0);
-
                     }, 1000);
                 }, 1000);
             }, 1000);
