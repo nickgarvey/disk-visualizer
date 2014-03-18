@@ -26,7 +26,7 @@ socket.onerror = function(msg) {
 var clearRect = function(ctx, x, y, width, height, color) {
 
     var fadeTo = function(a) {
-        ctx.fillStyle = "#FFF";
+        ctx.fillStyle = "#333";
         ctx.fillRect(x, y, width, height);
 
         color.a = a;
