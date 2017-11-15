@@ -1,4 +1,4 @@
-var TOTAL_SECTORS = 1953525168;
+var TOTAL_SECTORS = 1024; // update with your disk's sector count
 var NUM_ROWS = 10;
 var SPACE_BETWEEN_LINES = 10;
 
@@ -17,7 +17,7 @@ rgba.prototype.toString = function rgbaToString() {
         this.a.toFixed(1) + ")";
 };
 
-var socket = new WebSocket("ws://ngarveySiris:8080/ws");
+var socket = new WebSocket("ws://YOURHOSTHERE:8080/ws");
 socket.onerror = function(msg) {
     console.log("problem");
     console.log(msg.data);
@@ -34,6 +34,7 @@ var clearRect = function(ctx, x, y, width, height, color) {
         ctx.fillRect(x, y, width, height);
     };
 
+    // hadoken!
     window.setTimeout(function() {
         fadeTo(.25);
         window.setTimeout(function() {
